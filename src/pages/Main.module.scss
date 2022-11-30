@@ -1,0 +1,22 @@
+.navBlock {
+    display: flex;
+    justify-content: space-between;
+    height: 10vh;
+    border-bottom: 2px solid #f1f1f1;
+    align-items: center;
+    button {
+        font-size: large;
+        color: #1390e5;
+    }
+
+    // background-color: rgb(241, 241, 203);
+    border: 1px solid red;
+}
+.wrapContent {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 90vh;
+
+    border: 2px dashed blue;
+}
