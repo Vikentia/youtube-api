@@ -1,17 +1,2 @@
-.contentBlock {
-    font-size: 36px;
-    font-weight: 400;
-    line-height: 52px;
-    position: relative;
-    top: -70px;
+@import "../../assets/styles/vars.scss";
 
-    border: 2px dashed rgb(226, 172, 70);
-
-    &__input {
-        width: 50vw;
-        button {
-            background: #1390e5;
-            width: 150px;
-        }
-    }
-}

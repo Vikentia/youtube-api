@@ -1,11 +1,11 @@
 import React from "react";
 import { Main } from "../../pages/Main";
-import "./App.css";
+import styles from "./App.module.scss";
 
 function App() {
     return (
-        <div className="wrapper">
-            <div className="App">
+        <div className={styles.wrapper}>
+            <div className={styles.app}>
                 <Main />
             </div>
         </div>

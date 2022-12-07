@@ -1,6 +1,6 @@
 import { Button } from "antd";
 import React from "react";
-import logo from "../../assets/logo.svg";
+import logo from "../../assets/image/logo.svg";
 import styles from "./Navigation.module.scss";
 
 export const Navigation: React.FC = () => {
