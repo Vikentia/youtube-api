@@ -1,7 +1,8 @@
 import axios from 'axios';
-// import { Nullable } from '../components/Characters';
-// import { CharacterType } from '../components/Character';
+import { setVideos } from '../redux/actions/videosAction';
+import { useAppDispatch } from '../redux/store';
 
+const KEY = 'AIzaSyD3NtVEz2D0_f_1bcilE2YmKaQYO0pUEdk';
 
 export const instance = axios.create({
     baseURL: 'https://www.googleapis.com/youtube/v3/',
@@ -12,12 +13,40 @@ export const instance = axios.create({
     //  }
 })
 
+export const apiYouTube = {
+    getVideos(value: string, maxResults = 12, order: OrderType = "relevance") {
+        let obj = {
+            params: {
+                part: "snippet",
+                type: "video",
+                maxResults: maxResults,
+                order: order,
+                q: value,
+                key: KEY,
+            }
+        };
+        return instance
+            .get<ResponseType>('search', obj)
+            .then((res => res.data.items))
+    },
+}
+
+
+
+//types
+
 export type OrderType = 'date' | 'rating' | 'relevance' | 'videoCount' | 'viewCount'
+
+type ThumbnailsType = {
+    "url": string,
+    "width": number,
+    "height": number
+}
 
 export type VideoType = {
     "kind": string,
     "etag": string,
-    "id": {
+    "id"?: {
         "kind": string,
         "videoId": string,
         "channelId": string,
@@ -28,14 +57,11 @@ export type VideoType = {
         "channelId": string,
         "title": string,
         "description": string,
-        "thumbnails": any,
-        //   {
-        //     (key): {
-        //       "url": string,
-        //       "width": number,
-        //       "height": number
-        //     }
-        //   },
+        "thumbnails": {
+            "default": ThumbnailsType,
+            "medium": ThumbnailsType,
+            "high": ThumbnailsType,
+        },
         "channelTitle": string,
         "liveBroadcastContent": string
     }
@@ -52,23 +78,4 @@ export type ResponseType = {
         "resultsPerPage": number
     },
     "items": VideoType[]
-}
-
-
-export const apiYouTube = {
-    getVideos(value: string, maxResults = 12, order: OrderType) {
-        let obj = {
-            params: {
-                part: "snippet",
-                type: "video",
-                maxResults: maxResults,
-                order: "relevance",
-                q: value,
-                key: 'AIzaSyD3NtVEz2D0_f_1bcilE2YmKaQYO0pUEdk',
-            }
-        };
-return instance
-    .get<ResponseType>('search', obj)
-    .then((res => console.log(res.data.items)))
-    },
 }

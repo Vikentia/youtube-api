@@ -1,12 +1,9 @@
-
-import { ResponseType } from "../../api/instance";
-
+import { VideoType } from "../../api/instance";
 
 export const SET_VIDEOS = 'SET_VIDEOS'
 
-
-export const setVideos = (videos: ResponseType) => {
-    return { type: SET_VIDEOS, payload: { videos } } as const;
+export const setVideos = (value: string, videos: VideoType[]) => {
+    return { type: SET_VIDEOS, payload: { value, videos } } as const;
 }
 
 //types
